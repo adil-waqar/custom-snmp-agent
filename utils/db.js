@@ -1,4 +1,5 @@
 const Client = require('pg-native');
+require('dotenv').config();
 const client = new Client();
 
 try {

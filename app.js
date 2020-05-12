@@ -1,5 +1,4 @@
 const snmp = require('net-snmp');
-require('dotenv').config();
 const getDiskSpace = require('./utils/getDiskSpace');
 const getSignalValue = require('./utils/getSignalValue');
 

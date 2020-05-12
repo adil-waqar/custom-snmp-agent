@@ -1,8 +1,8 @@
 CREATE TABLE public."snmpSignals"
 (
+    id bigint NOT NULL,
     "signalValue" bigint NOT NULL,
     "signalTime" time without time zone NOT NULL,
-    id bigint NOT NULL,
     CONSTRAINT "snmpSignals_pkey" PRIMARY KEY (id)
 )
 WITH (
