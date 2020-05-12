@@ -72,7 +72,7 @@ Now, lets make the requests against the oids mentioned above.
 1. Get software version. Make sure to add **.0** at the end of the OID, since it's scalar type.
 
 ```bash
-snmpget -v2c -c public localhost 1.3.6.1.4.1.53864.1.0
+snmpget -v 2c -c public localhost 1.3.6.1.4.1.53864.1.0
 ```
 
 &nbsp;&nbsp;&nbsp;**Output:**
@@ -81,10 +81,10 @@ snmpget -v2c -c public localhost 1.3.6.1.4.1.53864.1.0
 iso.3.6.1.4.1.53864.1.0 = STRING: "6.1.1"
 ```
 
-2. Get signal value. Make sure to add **.0** at the end of the OID, since it's scalar type.
+2. Get the latest signal value from DB. Make sure to add **.0** at the end of the OID, since it's scalar type.
 
 ```bash
-snmpget -v2c -c public localhost 1.3.6.1.4.1.53864.3.0
+snmpget -v 2c -c public localhost 1.3.6.1.4.1.53864.3.0
 ```
 
 &nbsp;&nbsp;&nbsp;**Output:**
@@ -96,7 +96,7 @@ iso.3.6.1.4.1.53864.3.0 = INTEGER: 50
 3. Get total disk space used in **/var/log**. Make sure to add **.0** at the end of the OID, since it's scalar type.
 
 ```bash
-snmpget -v2c -c public localhost 1.3.6.1.4.1.53864.2.0
+snmpget -v 2c -c public localhost 1.3.6.1.4.1.53864.2.0
 ```
 
 &nbsp;&nbsp;&nbsp;**Output:**
