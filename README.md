@@ -104,7 +104,7 @@ sudo apt-get install -y libpq-dev
 npm install
 ```
 
-3. Create a .env file in root to set the following environment variables for Postgres.
+3. Create a .env file in root to set the following environment variables for Postgres. Set these variables according to your own setup
 
 ```bash
 PGHOST=<hostAddress>
