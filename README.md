@@ -249,7 +249,7 @@ extend myScript /path/to/script.sh
 
 ## Improvements
 
-The current application uses an inferior control flow logic. The main thread blocks until an SNMP request is received. It's only during the SNMP requests that the data will be updated and not in-between. And on the other hand, SNMP requests cannot be handled while the data is being updated, which might take longer time. E.g in our case, we query the database to get the latest signal value, which might take longer.
+The current application uses an inferior control flow logic. The main thread blocks until an SNMP request is received. It's only during the SNMP requests that the data will be updated and not in-between. And on the other hand, SNMP requests cannot be handled while the data is being updated, which might take longer time. E.g in our case, we query the database to get the latest signal value, which might take longer.\
 The improvement and more real-life suitable approach would be to have a multi-threaded approach. Though, JavaScript not being multi-threaded, still gives you a multi-threaded features but for faster speeds, we can opt for languages such as C# and Java. This way we can outsource the data-update process in a seperate thread and make sure that SNMP requests will always be replied in time.
 
 ## Built With
