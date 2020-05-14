@@ -1,0 +1,63 @@
+NET-SNMP-AFINITI-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, Integer32, OBJECT-TYPE, enterprises FROM SNMPv2-SMI
+;
+
+afiniti MODULE-IDENTITY
+    LAST-UPDATED "202005100000Z"
+    ORGANIZATION "Afiniti, Inc"
+    CONTACT-INFO    
+         "postal:   John @ Afiniti
+
+          email:    john.doe@afiniti.com"
+    DESCRIPTION
+        "This Mib module defines objects for software version"
+    REVISION     "202005100000Z"
+    DESCRIPTION
+        "Corrected notification example definitions"
+    REVISION     "200202060000Z"
+    DESCRIPTION
+        "First draft"
+    ::= { enterprises 53864 }
+
+--
+-- top level structure
+--
+afinitiStats       OBJECT IDENTIFIER ::= { afiniti 1 }
+softwareVersion    OBJECT IDENTIFIER ::= { afinitiStats 1 }
+diskSpace          OBJECT IDENTIFIER ::= { afinitiStats 2 }
+latestSignalValue  OBJECT IDENTIFIER ::= { afinitiStats 3 }
+
+--
+-- Example scalars
+--
+
+ softwareVersionString OBJECT-TYPE
+    SYNTAX      OCTET STRING
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "The software version"
+    DEFVAL { "6.1.1" }
+    ::= { softwareVersion 1 }
+
+ diskSpaceInteger OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "Total utilized disk area in /var/log"
+    ::= { diskSpace 1 }
+ 
+  signalValueInteger OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "Latest signal value from DB."
+    ::= { latestSignalValue 1 }
+ 
+
+
+END
