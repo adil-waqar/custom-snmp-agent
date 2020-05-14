@@ -206,7 +206,40 @@ The following table demonstrates the task breakdown and the time spent on each t
 
 ## Other solutions
 
-There were quite a lot of other solutions as well such as using **pass**, **extend** etc but I didn't choose them because of their learning curve. Also, I personally felt like AgentX is a better way to go about this problem.
+There were quite a lot of other solutions as well such as using **pass**, **extend** keywords in **snmpd.conf**. Or loading new code dynamically.
+
+## Usage of **pass** keyword
+
+This can be used to run a custom script to run at a specific OID request and return the output. Format is as follows
+
+```bash
+pass [oid] [PROG]
+```
+
+Where OID is the requested OID and PROG should return a response as three seperated lines printed on the stdout. The first line should contain **requested OID**, the second line should contain the its **type** (integer, gauge, counter, string) and the third line should contain its **value**.
+
+Example usage is as follows:
+
+```bash
+pass 1.3.6.1.4.1.53864.1.1 /bin/sh /path/to/script.sh
+```
+
+## Usage of **extend** keyword
+
+This also works the same way as pass but with the difference that the results are populated in two different tables. The first one being **nsExtendOutput1Table**, which holds the exit status, the first line and full output for each **extend** script and the other one being **nsExtendOutput2Table**, containing the complete output as a series of seperate lines.
+Format is as follows:
+
+```bash
+extend [OID] [NAME] [PROG] [ARGS]
+```
+
+Where OID is the requested OID, name is the name that you give to the output, PROG is the path to the script, and ARGS are the arguments that you can give to your script.
+
+Example usage:
+
+```bash
+extend myScript /path/to/script.sh
+```
 
 ## Improvements
 
