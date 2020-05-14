@@ -45,7 +45,7 @@ This SNMP sub-agent exposes a total of 3 custom OIDs, the details of which are a
 
 ```bash
 sudo apt update
-sudo apt install snmp snmpd libsnmp-dev
+sudo apt install snmp snmpd snmp-mibs-downloader
 ```
 
 2. Go to **/usr/share/snmp/mibs** and paste the custom MIB file that you'll find in **snmp-subagent/net-snmp-configs/NET-SNMP-AFINITI-MIB**, in this directory.
@@ -64,7 +64,13 @@ master agentx
 agentXSocket    tcp:localhost:705
 ```
 
-5. To test if everything is working, run the following command:
+5. To load new configuration, restart the **snmpd** service by executing the following:
+
+```bash
+sudo service snmpd restart
+```
+
+6. To test if everything is working, run the following command:
 
 ```bash
 snmpwalk -v 2c -c public localhost system
@@ -85,11 +91,11 @@ SNMPv2-MIB::sysLocation.0 = STRING: Unknown
 
 ## Project Setup
 
-1. The project has libudev-dev as a dependency. To install libudev-dev in your linux server, execute the following commands in terminal.
+1. The project has libudev-dev as a dependency. To install libpq-dev in your linux server, execute the following commands in terminal.
 
 ```bash
 sudo apt-get update -y
-sudo apt-get install -y libudev-dev
+sudo apt-get install -y libpq-dev
 ```
 
 2. Install the rest of project dependencies by executing the following command in the root project.
@@ -121,7 +127,7 @@ npm run migration
 sudo npm start
 ```
 
-6. Finally, you've an SNMP agent running at UDP port 161 and listening for requests.
+6. Finally, you've an SNMP sub-agent running and listening for requests.
 
 ## Testing/Usage
 
@@ -243,7 +249,8 @@ extend myScript /path/to/script.sh
 
 ## Improvements
 
-This solution can further be improved by making use of Async SNMP, such as **traps**.
+The current application uses an inferior control flow logic. The main thread blocks until an SNMP request is received. It's only during the SNMP requests that the data will be updated and not in-between. And on the other hand, SNMP requests cannot be handled while the data is being updated, which might take longer time. E.g in our case, we query the database to get the latest signal value, which might take longer.
+The improvement and more real-life suitable approach would be to have a multi-threaded approach. Though, JavaScript not being multi-threaded, still gives you a multi-threaded features but for faster speeds, we can opt for languages such as C# and Java. This way we can outsource the data-update process in a seperate thread and make sure that SNMP requests will always be replied in time.
 
 ## Built With
 
