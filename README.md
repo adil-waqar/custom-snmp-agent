@@ -19,6 +19,11 @@ Out of all the options that I tried, I choose **AgentX Protocol** due to the fol
 
 The three custom OIDs are the responsibility of my sub-agent to handle. Whenever the master SNMP agent gets a request from the manager on the custom OIDs that I have added, it forwards the request to the sub-agent to handle. Sub-agent handles the request and returns the result back to master which eventually returns it back to the client.
 
+I choose JavaScript is my language of choice because of the following reasons:
+
+1. The language is fast and can provide scalable solutions.
+2. Had a very good net-snmp library that potentially does everything. Link mentioned in references.
+
 ## Description
 
 This SNMP sub-agent exposes a total of 3 custom OIDs, the details of which are as follows.
@@ -185,3 +190,35 @@ NET-SNMP-AFINITI-MIB::softwareVersionString.0 = STRING: "6.1.1"
 NET-SNMP-AFINITI-MIB::diskSpaceInteger.0 = INTEGER: 744357888
 NET-SNMP-AFINITI-MIB::signalValueInteger.0 = INTEGER: 17
 ```
+
+## Tasks breakdown
+
+The following table demonstrates the task breakdown and the time spent on each task.
+
+| #   | Task                                             | Time spent |
+| --- | ------------------------------------------------ | ---------- |
+| 1   | Understanding SNMP, OIDs, MIBs                   | 3-4 hours  |
+| 2   | Finding an SNMP library for JS with good support | 1 hour     |
+| 3   | Development for the solution                     | 5-6 hours  |
+| 4   | Testing                                          | 2-3 hours  |
+| 5   | Resolution of bugs                               | 1 hour     |
+| 6   | Writing the ReadMe                               | 1 hour     |
+
+## Other solutions
+
+There were quite a lot of other solutions as well such as using **pass**, **extend** etc but I didn't choose them because of their learning curve. Also, I personally felt like AgentX is a better way to go about this problem.
+
+## Improvements
+
+This solution can further be improved by making use of Async SNMP, such as **traps**.
+
+## Built With
+
+- [node-net-snmp](https://github.com/markabrahams/node-net-snmp) - To build the sub-agent
+- [Pgnative](https://github.com/brianc/node-pg-native) - As the Postgres Client
+
+## References
+
+- [Essential SNMP, 2nd Edition](http://shop.oreilly.com/product/9780596008406.do)
+- [Net-SNMP Documentation](http://www.net-snmp.org/)
+- [Ways of extending an SNMP agent](https://vincent.bernat.ch/en/blog/2012-extending-netsnmp)
