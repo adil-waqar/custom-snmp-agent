@@ -48,7 +48,7 @@ sudo apt update
 sudo apt install snmp snmpd snmp-mibs-downloader
 ```
 
-2. Go to **/usr/share/snmp/mibs** and paste the custom MIB file that you'll find in **snmp-subagent/net-snmp-configs/NET-SNMP-AFINITI-MIB**, in this directory.
+2. Go to **/usr/share/snmp/mibs** and paste the custom MIB file that you'll find in **custom-snmp-agent/net-snmp-configs/NET-SNMP-AFINITI-MIB**, in this directory.
 
 3. Go to **/etc/snmp/snmp.conf** and replace the contents of the file with the following.
 
@@ -91,7 +91,7 @@ SNMPv2-MIB::sysLocation.0 = STRING: Unknown
 
 ## Project Setup
 
-1. The project has libudev-dev as a dependency. To install libpq-dev in your linux server, execute the following commands in terminal.
+1. The project has libpq-dev as a dependency. To install libpq-dev in your linux server, execute the following commands in terminal.
 
 ```bash
 sudo apt-get update -y
